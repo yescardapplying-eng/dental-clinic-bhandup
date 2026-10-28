@@ -88,3 +88,4 @@ export default function MedicalDisclaimerPage() {
     </div>
   );
 }
+

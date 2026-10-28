@@ -68,3 +68,4 @@ export default function FaqAccordion({ faqs, idPrefix = "faq" }: FaqAccordionPro
     </div>
   );
 }
+

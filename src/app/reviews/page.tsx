@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { clinicConfig } from "@/data/clinicData";
-import GoogleReviewsShowcase from "@/components/GoogleReviewsShowcase";
-import { Star, ShieldCheck, Heart, MessageSquare } from "lucide-react";
+import { clinicConfig, reviewsFaqs } from "@/data/clinicData";
+import GoogleReviewsCarousel from "@/components/GoogleReviewsCarousel";
+import FaqAccordion from "@/components/FaqAccordion";
+import { ShieldCheck, MessageSquare, ExternalLink } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Patient Reviews & Feedback",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function ReviewsPage() {
   return (
-    <div className="py-10 sm:py-14">
+    <div className="py-10 sm:py-14 animate-fadeInUp">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="mb-6">
@@ -43,9 +44,9 @@ export default function ReviewsPage() {
         </div>
 
         {/* Verification Ethics Notice Card */}
-        <div className="bg-white rounded-2xl border border-surface-border p-6 shadow-subtle mb-10 max-w-4xl">
+        <div className="bg-white rounded-2xl border border-surface-border p-6 shadow-subtle mb-10 max-w-4xl hover:shadow-card transition-shadow">
           <div className="flex items-start gap-3">
-            <ShieldCheck className="w-6 h-6 text-teal shrink-0 mt-0.5" />
+            <ShieldCheck className="w-6 h-6 text-teal shrink-0 mt-0.5 icon-animate" />
             <div>
               <h2 className="text-sm font-heading font-bold text-navy">
                 Our Verification & Transparency Commitment
@@ -57,13 +58,13 @@ export default function ReviewsPage() {
           </div>
         </div>
 
-        {/* Reviews Component */}
-        <div className="bg-white rounded-2xl border border-surface-border overflow-hidden mb-12 shadow-card">
-          <GoogleReviewsShowcase />
+        {/* Interactive Google Reviews Carousel */}
+        <div className="mb-14">
+          <GoogleReviewsCarousel />
         </div>
 
         {/* Review Submission Guidance */}
-        <div className="bg-surface-offwhite rounded-2xl border border-surface-border p-6 sm:p-8 max-w-3xl mx-auto text-center">
+        <div className="bg-surface-offwhite rounded-2xl border border-surface-border p-6 sm:p-8 max-w-3xl mx-auto text-center mb-16 shadow-subtle">
           <MessageSquare className="w-8 h-8 text-teal mx-auto mb-3" />
           <h2 className="text-lg font-heading font-bold text-navy mb-2">
             Have you visited our Bhandup West clinic?
@@ -75,10 +76,24 @@ export default function ReviewsPage() {
             href="https://maps.google.com/?q=Bhandup+West+Mumbai+Dental+Clinic"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-teal text-white text-xs sm:text-sm font-semibold hover:bg-teal-600 transition-colors shadow-subtle"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-teal text-white text-xs sm:text-sm font-semibold hover:bg-teal-600 transition-all hover:shadow-card hover:-translate-y-0.5 shadow-subtle"
           >
-            Leave a Review
+            <span>Leave a Google Review</span>
+            <ExternalLink className="w-4 h-4" />
           </a>
+        </div>
+
+        {/* BOTTOM SECTION: 3 RELEVANT FAQS FOR REVIEWS */}
+        <div className="max-w-4xl mx-auto mb-10">
+          <div className="text-center mb-8">
+            <span className="text-xs font-bold uppercase tracking-wider text-teal">
+              FAQs
+            </span>
+            <h2 className="text-2xl font-heading font-bold text-navy mt-1">
+              Questions About Reviews & Patient Feedback
+            </h2>
+          </div>
+          <FaqAccordion faqs={reviewsFaqs} idPrefix="reviews-faq" />
         </div>
       </div>
     </div>

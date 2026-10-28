@@ -6,7 +6,7 @@ import { useBooking } from "@/context/BookingContext";
 import { clinicConfig, servicesData, homepageFaqs } from "@/data/clinicData";
 import ServiceCard from "@/components/ServiceCard";
 import FaqAccordion from "@/components/FaqAccordion";
-import GoogleReviewsShowcase from "@/components/GoogleReviewsShowcase";
+import GoogleReviewsCarousel from "@/components/GoogleReviewsCarousel";
 import {
   Calendar,
   PhoneCall,
@@ -66,12 +66,12 @@ export default function HomePage() {
       />
 
       {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden bg-white border-b border-surface-border py-12 md:py-16 lg:py-20">
+      <section className="relative overflow-hidden bg-white border-b border-surface-border py-12 md:py-16 lg:py-20 animate-fadeInUp">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Content (7 cols on desktop) */}
             <div className="lg:col-span-7 flex flex-col justify-center">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-pale-mint text-teal-800 text-xs font-semibold mb-5 w-fit border border-teal-100">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-pale-mint text-teal-800 text-xs font-semibold mb-5 w-fit border border-teal-100 shadow-subtle">
                 <MapPin className="w-3.5 h-3.5 text-teal" />
                 <span>Bhandup West, Mumbai</span>
               </div>
@@ -91,7 +91,7 @@ export default function HomePage() {
                 <button
                   type="button"
                   onClick={() => openBooking()}
-                  className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-teal text-white text-sm font-semibold hover:bg-teal-600 transition-colors shadow-subtle active:scale-95 focus-visible:ring-2 focus-visible:ring-teal"
+                  className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-teal text-white text-sm font-semibold hover:bg-teal-600 transition-all shadow-subtle hover:shadow-card hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-teal"
                 >
                   <Calendar className="w-4 h-4 mr-2" />
                   <span>Book Now</span>
@@ -99,7 +99,7 @@ export default function HomePage() {
 
                 <a
                   href={`tel:${clinicConfig.phone}`}
-                  className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl border border-surface-border text-navy text-sm font-semibold hover:bg-slate-50 transition-colors active:scale-95 focus-visible:ring-2 focus-visible:ring-teal"
+                  className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl border border-surface-border text-navy text-sm font-semibold hover:bg-slate-50 transition-all hover:shadow-subtle hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-teal"
                 >
                   <PhoneCall className="w-4 h-4 mr-2 text-teal" />
                   <span>Call Now</span>
@@ -169,14 +169,14 @@ export default function HomePage() {
 
             <Link
               href="/services"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-teal hover:text-teal-700 transition-colors self-start sm:self-auto"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-teal hover:text-teal-700 transition-colors self-start sm:self-auto group"
             >
               <span>View All</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
 
-          {/* Responsive Services Grid: 1 col mobile, 2 col tablet, 3 col desktop */}
+          {/* Responsive Services Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {servicesData.map((service) => (
               <ServiceCard key={service.slug} service={service} />
@@ -260,8 +260,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. GOOGLE REVIEWS SHOWCASE */}
-      <GoogleReviewsShowcase />
+      {/* 4. GOOGLE REVIEWS INTERACTIVE CAROUSEL */}
+      <GoogleReviewsCarousel />
 
       {/* 5. HOMEPAGE FAQ SECTION - EXACTLY 6 FAQS AS REQUIRED */}
       <section className="py-14 bg-white border-t border-surface-border" aria-labelledby="faq-section-heading">
@@ -311,7 +311,7 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={() => openBooking()}
-                className="w-full text-center px-4 py-2.5 rounded-xl bg-teal text-white text-xs font-semibold hover:bg-teal-600 transition-colors shadow-subtle"
+                className="w-full text-center px-4 py-2.5 rounded-xl bg-teal text-white text-xs font-semibold hover:bg-teal-600 transition-all hover:shadow-card active:scale-95 shadow-subtle"
               >
                 Book Now
               </button>

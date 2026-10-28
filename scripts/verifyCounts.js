@@ -45,3 +45,4 @@ if (heroMatch) {
   const heroWords = heroMatch[0].trim().split(/\s+/).length;
   console.log(`Hero paragraph words: ${heroWords} (12-25) -> ${heroWords >= 12 && heroWords <= 25 ? 'PASS' : 'FAIL'}`);
 }
+

@@ -14,7 +14,7 @@ export default function WhatsAppFloating() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="wa-floating-btn fixed z-40 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-elevated focus-visible:outline-offset-4 focus-visible:outline-[#25D366] transition-transform active:scale-95 right-4 sm:right-6 bottom-[120px] md:bottom-[130px]"
+        className="wa-floating-btn fixed z-30 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-elevated focus-visible:outline-offset-4 focus-visible:outline-[#25D366] transition-transform active:scale-95 right-[40px] bottom-[120px] md:bottom-[130px]"
       >
         {/* Authentic Official WhatsApp SVG Path */}
         <svg

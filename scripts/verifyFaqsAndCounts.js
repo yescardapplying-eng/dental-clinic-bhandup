@@ -23,3 +23,4 @@ console.log(`Hero paragraph word count: ${heroWords} (expect 12-25):`, heroWords
 const footerIntro = "Modern dental practice in Bhandup West dedicated to gentle treatments, preventive oral health, and personalized family care.";
 const footerWords = footerIntro.trim().split(/\s+/).length;
 console.log(`Footer intro word count: ${footerWords} (expect 15-18):`, footerWords >= 15 && footerWords <= 18 ? '✓ PASS' : '✗ FAIL');
+

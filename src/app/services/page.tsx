@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { servicesData } from "@/data/clinicData";
+import { servicesData, servicesOverviewFaqs } from "@/data/clinicData";
 import ServiceCard from "@/components/ServiceCard";
+import FaqAccordion from "@/components/FaqAccordion";
 import { Sparkles, Calendar } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="py-10 sm:py-14">
+    <div className="py-10 sm:py-14 animate-fadeInUp">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="mb-6">
@@ -50,7 +51,7 @@ export default function ServicesPage() {
         </div>
 
         {/* Bottom Booking Callout */}
-        <div className="bg-pale-mint/60 border border-teal-200 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-pale-mint/60 border border-teal-200 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 mb-16 shadow-subtle">
           <div>
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-1">
               Unsure which treatment you need?
@@ -61,10 +62,23 @@ export default function ServicesPage() {
           </div>
           <Link
             href="/contact"
-            className="w-full sm:w-auto text-center px-6 py-3 rounded-xl bg-teal text-white text-xs sm:text-sm font-semibold hover:bg-teal-600 transition-colors shadow-subtle shrink-0"
+            className="w-full sm:w-auto text-center px-6 py-3 rounded-xl bg-teal text-white text-xs sm:text-sm font-semibold hover:bg-teal-600 transition-all hover:shadow-card hover:-translate-y-0.5 shadow-subtle shrink-0"
           >
             Request Appointment
           </Link>
+        </div>
+
+        {/* BOTTOM SECTION: 3 RELEVANT FAQS FOR SERVICES OVERVIEW */}
+        <div className="max-w-4xl mx-auto mb-10">
+          <div className="text-center mb-8">
+            <span className="text-xs font-bold uppercase tracking-wider text-teal">
+              FAQs
+            </span>
+            <h2 className="text-2xl font-heading font-bold text-navy mt-1">
+              Questions About Our Dental Treatments
+            </h2>
+          </div>
+          <FaqAccordion faqs={servicesOverviewFaqs} idPrefix="services-faq" />
         </div>
       </div>
     </div>

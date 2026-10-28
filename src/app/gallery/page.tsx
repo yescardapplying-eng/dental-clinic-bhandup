@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { clinicConfig } from "@/data/clinicData";
+import { clinicConfig, galleryFaqs } from "@/data/clinicData";
+import FaqAccordion from "@/components/FaqAccordion";
 import { ShieldCheck, Eye, Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -51,7 +52,7 @@ const galleryItems = [
 
 export default function GalleryPage() {
   return (
-    <div className="py-10 sm:py-14">
+    <div className="py-10 sm:py-14 animate-fadeInUp">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="mb-6">
@@ -82,19 +83,19 @@ export default function GalleryPage() {
         </div>
 
         {/* Clinical Integrity Notice */}
-        <div className="bg-white rounded-2xl border border-surface-border p-5 mb-10 shadow-subtle flex items-start gap-3 max-w-3xl">
-          <ShieldCheck className="w-5 h-5 text-teal shrink-0 mt-0.5" />
+        <div className="bg-white rounded-2xl border border-surface-border p-5 mb-10 shadow-subtle flex items-start gap-3 max-w-3xl hover:shadow-card transition-shadow">
+          <ShieldCheck className="w-5 h-5 text-teal shrink-0 mt-0.5 icon-animate" />
           <p className="text-xs text-slate-600 leading-relaxed">
             <strong>Clinical Integrity Notice:</strong> We showcase authentic clinic facilities and operatory setups. In accordance with medical ethics, we do not publish digitally altered or fabricated before-and-after smile transformations.
           </p>
         </div>
 
-        {/* Gallery Grid: Responsive 1 col mobile, 2 col tablet, 3 col desktop */}
+        {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {galleryItems.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl border border-surface-border overflow-hidden shadow-subtle hover:shadow-card transition-shadow duration-200 flex flex-col group"
+              className="bg-white rounded-2xl border border-surface-border overflow-hidden shadow-subtle hover:shadow-card transition-all duration-300 flex flex-col group hover:-translate-y-1.5"
             >
               <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden">
                 <Image
@@ -102,7 +103,7 @@ export default function GalleryPage() {
                   alt={item.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                   loading="lazy"
                 />
                 <span className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-[11px] font-semibold text-teal-800 px-2.5 py-1 rounded-lg border border-surface-border shadow-sm">
@@ -111,7 +112,7 @@ export default function GalleryPage() {
               </div>
               <div className="p-5 flex flex-col flex-grow justify-between">
                 <div>
-                  <h2 className="font-heading font-bold text-base text-navy mb-1.5">
+                  <h2 className="font-heading font-bold text-base text-navy mb-1.5 group-hover:text-teal transition-colors">
                     {item.title}
                   </h2>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -121,6 +122,19 @@ export default function GalleryPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* BOTTOM SECTION: 3 RELEVANT FAQS FOR GALLERY */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <div className="text-center mb-8">
+            <span className="text-xs font-bold uppercase tracking-wider text-teal">
+              FAQs
+            </span>
+            <h2 className="text-2xl font-heading font-bold text-navy mt-1">
+              Questions About Our Clinic Setup & Safety
+            </h2>
+          </div>
+          <FaqAccordion faqs={galleryFaqs} idPrefix="gallery-faq" />
         </div>
 
         {/* Visit Callout */}
@@ -134,7 +148,7 @@ export default function GalleryPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/contact"
-              className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-teal text-white text-xs sm:text-sm font-semibold hover:bg-teal-600 transition-colors"
+              className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-teal text-white text-xs sm:text-sm font-semibold hover:bg-teal-600 transition-all hover:shadow-card hover:-translate-y-0.5"
             >
               Request Appointment
             </Link>

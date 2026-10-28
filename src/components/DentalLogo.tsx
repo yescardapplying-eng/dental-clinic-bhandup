@@ -56,3 +56,4 @@ export default function DentalLogo({ variant = "default", className = "" }: Dent
     </Link>
   );
 }
+

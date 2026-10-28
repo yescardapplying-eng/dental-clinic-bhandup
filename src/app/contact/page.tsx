@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { clinicConfig, servicesData } from "@/data/clinicData";
+import { clinicConfig, servicesData, contactFaqs } from "@/data/clinicData";
+import FaqAccordion from "@/components/FaqAccordion";
 import {
   Phone,
   Mail,
@@ -66,7 +67,7 @@ export default function ContactPage() {
   const today = new Date().toISOString().split("T")[0];
 
   return (
-    <div className="py-10 sm:py-14">
+    <div className="py-10 sm:py-14 animate-fadeInUp">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="mb-6">
@@ -96,11 +97,11 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-16">
           {/* Left Column: Contact Cards & Clinic Details (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             {/* Contact Details Card */}
-            <div className="bg-white rounded-2xl border border-surface-border p-6 shadow-subtle">
+            <div className="bg-white rounded-2xl border border-surface-border p-6 shadow-subtle hover:shadow-card transition-shadow">
               <h2 className="text-base font-heading font-bold text-navy mb-4">
                 Clinic Information
               </h2>
@@ -109,7 +110,7 @@ export default function ContactPage() {
                 {/* Location */}
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-teal-50 text-teal flex items-center justify-center shrink-0 mt-0.5">
-                    <MapPin className="w-4 h-4" />
+                    <MapPin className="w-4 h-4 icon-animate" />
                   </div>
                   <div>
                     <strong className="block text-navy font-semibold text-xs uppercase tracking-wide">
@@ -128,7 +129,7 @@ export default function ContactPage() {
                 {/* Phone */}
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-teal-50 text-teal flex items-center justify-center shrink-0 mt-0.5">
-                    <Phone className="w-4 h-4" />
+                    <Phone className="w-4 h-4 icon-animate" />
                   </div>
                   <div>
                     <strong className="block text-navy font-semibold text-xs uppercase tracking-wide">
@@ -147,7 +148,7 @@ export default function ContactPage() {
                 {/* WhatsApp */}
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-[#25D366]/10 text-[#25D366] flex items-center justify-center shrink-0 mt-0.5">
-                    <MessageCircle className="w-4 h-4" />
+                    <MessageCircle className="w-4 h-4 icon-animate" />
                   </div>
                   <div>
                     <strong className="block text-navy font-semibold text-xs uppercase tracking-wide">
@@ -168,7 +169,7 @@ export default function ContactPage() {
                 {/* Email */}
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-teal-50 text-teal flex items-center justify-center shrink-0 mt-0.5">
-                    <Mail className="w-4 h-4" />
+                    <Mail className="w-4 h-4 icon-animate" />
                   </div>
                   <div>
                     <strong className="block text-navy font-semibold text-xs uppercase tracking-wide">
@@ -186,7 +187,7 @@ export default function ContactPage() {
             </div>
 
             {/* Timings Card */}
-            <div className="bg-white rounded-2xl border border-surface-border p-6 shadow-subtle">
+            <div className="bg-white rounded-2xl border border-surface-border p-6 shadow-subtle hover:shadow-card transition-shadow">
               <h2 className="text-base font-heading font-bold text-navy mb-3 flex items-center gap-2">
                 <Clock className="w-4 h-4 text-teal" />
                 <span>Consultation Timings</span>
@@ -202,30 +203,11 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
-
-            {/* Directions Map Link */}
-            <div className="bg-pale-mint/60 border border-teal-200 rounded-2xl p-5 shadow-subtle">
-              <h3 className="font-heading font-bold text-sm text-navy mb-1">
-                Directions to Bhandup West Clinic
-              </h3>
-              <p className="text-xs text-slate-600 mb-3">
-                Located with direct access to transit hubs in Bhandup West, Mumbai.
-              </p>
-              <a
-                href="https://maps.google.com/?q=Bhandup+West,+Mumbai,+Maharashtra"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-teal hover:underline"
-              >
-                <span>Get Directions on Google Maps</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </div>
           </div>
 
           {/* Right Column: Interactive Appointment Request Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="bg-white rounded-2xl border border-surface-border p-6 sm:p-8 shadow-card">
+            <div className="bg-white rounded-2xl border border-surface-border p-6 sm:p-8 shadow-card hover:shadow-elevated transition-shadow duration-300">
               <h2 className="text-xl font-heading font-bold text-navy mb-1">
                 Request an Appointment
               </h2>
@@ -234,7 +216,7 @@ export default function ContactPage() {
               </p>
 
               {isSubmitted ? (
-                <div className="py-8 text-center">
+                <div className="py-8 text-center animate-fadeIn">
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-teal-50 flex items-center justify-center text-teal-600">
                     <CheckCircle2 className="w-10 h-10" />
                   </div>
@@ -401,7 +383,7 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full sm:w-auto px-8 py-3 rounded-xl bg-teal text-white text-xs sm:text-sm font-semibold hover:bg-teal-600 transition-colors shadow-subtle disabled:opacity-60"
+                      className="w-full sm:w-auto px-8 py-3 rounded-xl bg-teal text-white text-xs sm:text-sm font-semibold hover:bg-teal-600 transition-all hover:shadow-card hover:-translate-y-0.5 shadow-subtle disabled:opacity-60 active:scale-95"
                     >
                       {isSubmitting ? "Submitting..." : "Submit Request"}
                     </button>
@@ -410,6 +392,66 @@ export default function ContactPage() {
               )}
             </div>
           </div>
+        </div>
+
+        {/* 
+          NEW GOOGLE MAP SECTION - DIRECTLY REQUESTED BY USER
+          Visual interactive map of Bhandup West clinic location
+        */}
+        <div className="mb-16">
+          <div className="bg-white rounded-2xl border border-surface-border p-6 sm:p-8 shadow-card">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-teal">
+                  Find Us On The Map
+                </span>
+                <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mt-1">
+                  Clinic Location: Bhandup West, Mumbai
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-600 mt-1">
+                  Located near Bhandup railway station with convenient access across central Mumbai.
+                </p>
+              </div>
+
+              <a
+                href="https://maps.google.com/?q=Bhandup+West+Mumbai+Maharashtra"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-teal text-white text-xs sm:text-sm font-semibold hover:bg-teal-600 transition-all hover:shadow-card hover:-translate-y-0.5 shadow-subtle self-start sm:self-auto shrink-0"
+              >
+                <span>Open in Google Maps</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Google Map iframe */}
+            <div className="w-full h-80 sm:h-96 rounded-xl overflow-hidden border border-surface-border shadow-inner bg-slate-100">
+              <iframe
+                title="Google Map location of Bhandup West Mumbai"
+                src={clinicConfig.address.mapEmbedUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* BOTTOM SECTION: 3 RELEVANT FAQS FOR CONTACT PAGE */}
+        <div className="max-w-4xl mx-auto mb-10">
+          <div className="text-center mb-8">
+            <span className="text-xs font-bold uppercase tracking-wider text-teal">
+              FAQs
+            </span>
+            <h2 className="text-2xl font-heading font-bold text-navy mt-1">
+              Questions About Appointments & Reaching Our Clinic
+            </h2>
+          </div>
+          <FaqAccordion faqs={contactFaqs} idPrefix="contact-faq" />
         </div>
       </div>
     </div>

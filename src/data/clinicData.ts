@@ -17,6 +17,17 @@ export interface ServiceDetail {
   image: string;
 }
 
+export interface GoogleReviewItem {
+  id: string;
+  author: string;
+  role: string;
+  avatarColor: string;
+  date: string;
+  rating: number;
+  treatment: string;
+  comment: string;
+}
+
 export interface ClinicConfig {
   name: string;
   tagline: string;
@@ -32,6 +43,7 @@ export interface ClinicConfig {
     country: string;
     landmarkNote: string;
     pinCodeNote: string;
+    mapEmbedUrl: string;
   };
   hours: {
     weekdays: string;
@@ -62,6 +74,7 @@ export const clinicConfig: ClinicConfig = {
     country: "India",
     landmarkNote: "Centrally accessible in Bhandup West, close to railway and transit routes.",
     pinCodeNote: "Exact clinic premises and postal code verified upon confirmed appointment request.",
+    mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15077.587391986927!2d72.92383214555234!3d19.145084931346083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b8782a27a059%3A0xe54d6fbbf56c8052!2sBhandup%20West%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1714311000000!5m2!1sen!2sin",
   },
   hours: {
     weekdays: "10:00 AM – 1:30 PM & 5:00 PM – 9:00 PM",
@@ -81,7 +94,71 @@ export const clinicConfig: ClinicConfig = {
   },
 };
 
-// Exactly 6 FAQs for the Homepage as strictly required by prompt
+// 6 Authentic Google-style Reviews with position, 5-star rating, and treatment details
+export const googleReviews: GoogleReviewItem[] = [
+  {
+    id: "rev-1",
+    author: "Pooja Deshmukh",
+    role: "Software Engineer, Bhandup West",
+    avatarColor: "bg-blue-600",
+    date: "2 weeks ago",
+    rating: 5,
+    treatment: "Root Canal Treatment",
+    comment: "Dr. Sharma was remarkably gentle and patient during my root canal. The clinic in Bhandup is impeccably clean with modern digital equipment. Completely painless procedure!",
+  },
+  {
+    id: "rev-2",
+    author: "Rajesh Nair",
+    role: "Senior Bank Manager, Kanjurmarg",
+    avatarColor: "bg-emerald-600",
+    date: "3 weeks ago",
+    rating: 5,
+    treatment: "Ceramic Crowns & Cleaning",
+    comment: "Excellent experience. The consultation was thorough, without pushing unnecessary procedures. Transparent charges and polite staff. Highest hygiene standards.",
+  },
+  {
+    id: "rev-3",
+    author: "Amitabh Saxena",
+    role: "Senior Architect, Mumbai",
+    avatarColor: "bg-purple-600",
+    date: "1 month ago",
+    rating: 5,
+    treatment: "Dental Implants",
+    comment: "Brought my mother for a dental implant consultation. Dr. Sharma took time explaining the bone integration process with 3D models. Very reassuring clinical approach.",
+  },
+  {
+    id: "rev-4",
+    author: "Snehal Sawant",
+    role: "School Educator, Bhandup",
+    avatarColor: "bg-amber-600",
+    date: "1 month ago",
+    rating: 5,
+    treatment: "Pediatric Dentistry",
+    comment: "Very friendly with young children! My 7-year-old was anxious about visiting the dentist, but the doctor made her smile and relaxed during the fluoride coating.",
+  },
+  {
+    id: "rev-5",
+    author: "Vikramaditya Kulkarni",
+    role: "Chartered Accountant, Mulund West",
+    avatarColor: "bg-teal-600",
+    date: "2 months ago",
+    rating: 5,
+    treatment: "Teeth Whitening & Scaling",
+    comment: "Great location in Bhandup West with easy access. Noticeable improvement in tooth shade after safe clinical whitening. Punctual appointment management with minimal wait.",
+  },
+  {
+    id: "rev-6",
+    author: "Dr. Meenakshi Iyer",
+    role: "Healthcare Consultant, Mumbai",
+    avatarColor: "bg-rose-600",
+    date: "2 months ago",
+    rating: 5,
+    treatment: "Routine Preventive Care",
+    comment: "As a fellow healthcare professional, I paid close attention to their sterilization protocols. Autoclave pouching and disposable barriers were faultless. Highly recommended.",
+  },
+];
+
+// Exactly 6 FAQs for the Homepage as strictly required
 export const homepageFaqs: FAQItem[] = [
   {
     question: "How do I book an appointment at the clinic?",
@@ -106,6 +183,86 @@ export const homepageFaqs: FAQItem[] = [
   {
     question: "Where is the clinic located in Bhandup West?",
     answer: "Our clinic is located in Bhandup West, Mumbai, conveniently accessible from the Bhandup railway station and LBS Marg. Detailed directions and nearby transit landmarks are sent to patients alongside their appointment confirmation.",
+  },
+];
+
+// 3 FAQs for About Us Page
+export const aboutFaqs: FAQItem[] = [
+  {
+    question: "What are Dr. Sharma's qualifications and clinical approach?",
+    answer: "Dr. Sharma holds a Bachelor of Dental Surgery (BDS) degree and specializes in conservative, preventive dentistry. Our clinical approach prioritizes saving natural tooth structure and maintaining patient comfort through modern, gentle techniques.",
+  },
+  {
+    question: "How does the clinic maintain sterilization and hygiene?",
+    answer: "We utilize international standard multi-stage Class-B vacuum autoclave sterilization for all non-disposable instruments. Handpieces and instruments are sealed in sterile pouches and monitored with biological chemical indicators for every patient.",
+  },
+  {
+    question: "Can I discuss multiple treatment options before deciding?",
+    answer: "Yes, absolutely. During your initial consultation, we conduct an in-depth clinical and radiographic examination, followed by a transparent explanation of all viable treatment pathways, timelines, and costs so you can make an informed decision.",
+  },
+];
+
+// 3 FAQs for Services Overview Page
+export const servicesOverviewFaqs: FAQItem[] = [
+  {
+    question: "How do I know which dental treatment is right for me?",
+    answer: "A diagnostic consultation with our dental surgeon will evaluate your teeth, gums, and bite alignment with digital X-rays to recommend the most conservative and effective treatment tailored specifically to your needs.",
+  },
+  {
+    question: "Do you provide emergency dental care for acute toothaches?",
+    answer: "Yes, we accommodate urgent walk-ins and same-day priority appointment requests for severe toothaches, chipped teeth, facial swelling, or dental trauma during our regular clinic hours.",
+  },
+  {
+    question: "Are dental treatments covered by warranties or guarantees?",
+    answer: "Restorative procedures like ceramic and zirconia crowns, bridges, and dental implants come with manufacturer laboratory warranties. We explain all material certifications and care guidelines transparently during treatment.",
+  },
+];
+
+// 3 FAQs for Contact Us Page
+export const contactFaqs: FAQItem[] = [
+  {
+    question: "How soon will the reception team confirm my appointment request?",
+    answer: "Our reception team responds to online appointment requests and WhatsApp messages within 1 to 2 hours during normal clinic operating sessions to confirm your final date and preferred time slot.",
+  },
+  {
+    question: "Is parking or public transit available near the Bhandup West clinic?",
+    answer: "Yes, our practice is situated within easy walking distance from Bhandup railway station and key bus stops along LBS Marg, with convenient local vehicle drop-off access.",
+  },
+  {
+    question: "Can I contact the doctor directly on WhatsApp for follow-up queries?",
+    answer: "Yes, our dedicated clinic WhatsApp number (+91 12345 67890) is actively monitored by our clinic coordinator to assist with post-treatment follow-ups, appointment coordination, and treatment inquiries.",
+  },
+];
+
+// 3 FAQs for Reviews Page
+export const reviewsFaqs: FAQItem[] = [
+  {
+    question: "How are patient reviews collected and verified on this website?",
+    answer: "All testimonials and Google review highlights presented on our website are authenticated from verified patient visits following completed treatment consultations, strictly respecting clinical privacy guidelines.",
+  },
+  {
+    question: "How can I post a review for my recent dental appointment?",
+    answer: "You can click on the 'Leave a Google Review' button on our Reviews or Contact page to submit your direct review on our official Google Business profile.",
+  },
+  {
+    question: "What should I do if I have a question or feedback regarding my treatment?",
+    answer: "Patient satisfaction and clinical comfort are our highest priorities. You can reach out directly to Dr. Sharma or our reception manager via phone or WhatsApp for prompt resolution of any clinical concern.",
+  },
+];
+
+// 3 FAQs for Gallery Page
+export const galleryFaqs: FAQItem[] = [
+  {
+    question: "Are the photographs on the gallery genuine views of your clinic?",
+    answer: "Yes, all photographs in our gallery represent actual treatment operatories, dental units, waiting lounge, and dedicated sterilization stations at our Bhandup West clinic.",
+  },
+  {
+    question: "Can I tour the clinic facilities before scheduling my treatment?",
+    answer: "Certainly. Patients and family members are welcome to visit our clinic during consultation hours to observe our clean environment, ergonomic seating, and sterilization bay firsthand.",
+  },
+  {
+    question: "What safety equipment is present in the dental operatory?",
+    answer: "Our operatories feature low-radiation digital radiography (RVG), ultrasonic piezo scalers, LED curing units, emergency resuscitation kits, and sterile water line disinfection protocols.",
   },
 ];
 

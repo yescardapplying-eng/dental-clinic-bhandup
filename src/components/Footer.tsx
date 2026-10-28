@@ -157,23 +157,21 @@ export default function Footer() {
         </div>
 
         {/* 
-          CRITICAL REQUIREMENT:
-          The footer must end with one compact copyright/designer attribution line.
-          Nothing whatsoever may appear below the copyright/designer attribution line.
-          No additional section, text, icon row, badge, legal note, or decorative footer content after it.
+          CRITICAL ATTRIBUTION LINE:
+          Designed by Noorweb (where "Noorweb" is the anchor linking to https://www.noorweb.in).
+          Absolute final footer element.
         */}
         <div className="pt-6 border-t border-navy-800 text-center text-xs text-slate-400">
           <p>
-            © {currentYear} {clinicConfig.name}. All rights reserved. Designed by Noorweb (
+            © {currentYear} {clinicConfig.name}. All rights reserved. Designed by{" "}
             <a
               href="https://www.noorweb.in"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-teal-300 hover:text-white underline underline-offset-2 transition-colors"
+              className="text-teal-300 hover:text-white underline underline-offset-2 transition-colors font-medium"
             >
-              www.noorweb.in
-            </a>
-            ).
+              Noorweb
+            </a>.
           </p>
         </div>
       </div>
